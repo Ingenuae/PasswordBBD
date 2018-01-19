@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<h1>JSF H2 EXAMPLE</h1>
+	<h2>RECORD YOUR USER SETTINGS</h2>
+	<h3>Define a User in this form</h3>
+
+	<h:form>
+		<h:outputLabel value="Name : " />
+		<h:inputText value="#{userControl.userForm.userName}" required="true" />
+		<p></p>
+		<h:outputLabel value="Surname : " />
+		<h:inputText value="#{userControl.userForm.userSurname}" required="true" />
+		<p></p>
+		<h:outputLabel value="Email : " required="true"/>
+		<h:inputText id="email" value="#{userControl.userForm.email}" size="35"	maxlenght="125" validator="#{userControl.userForm.validate}" />
+		<h:message for="email" style="color:red" />
+		<p>Please Define your password :</p>
+		<h:inputText id="pass" value="#{userControl.userForm.password}" size="35"	maxlenght="125" validator="#{userControl.userForm.validatePassword}"/>
+		<h:message for="pass" style="color:red" />
+		<h:commandButton value="Validate" action = "#{userControl.action}"></h:commandButton>
+		
+	</h:form>
+</body>
+
+<!-- 			binding="#{varPass}" -->
+<!-- 			<f:attribute name="attributeName" value="#{varPass}"></f:attribute> -->
+<!-- 			<f:validator validatorId="passwordValidator"></f:validator> -->
+
+</html>
