@@ -9,8 +9,8 @@ import javax.persistence.Table;
 
 //@Entity
 //@Table(name = "USERS", schema = "PUBLIC", catalog = "PUBLIC")
-//@ManagedBean
-//@RequestScoped
+@ManagedBean
+@RequestScoped
 public class User implements Serializable {
 
 	

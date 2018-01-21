@@ -18,13 +18,17 @@ public class UserControl{
 		
 		//INSTANCE USER FORM, COUCHE NON SECURISE
 		this.setUserForm(new UserForm()); 
-		this.getUserForm().setUser(new User());
+		System.out.println("hello");
+		
 		
 		 //CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE	
 		this.getUserForm().getUser().setUserName(getUserForm().getUserName());
 		this.getUserForm().getUser().setUserSurname(getUserForm().getUserSurname());
 		this.getUserForm().getUser().setPassword(getUserForm().getPassword());
 		this.getUserForm().getUser().setEmail(getUserForm().getEmail());
+		
+		this.getUserForm().setUser(new User());
+		System.out.println(this.getUserForm().getUser());
 		
 		//em.persist(this.userForm.user); 
 		//em.flush();
