@@ -15,6 +15,10 @@ import javax.faces.validator.ValidatorException;
 @ManagedBean
 @RequestScoped
 public class UserForm implements Validator, Serializable {
+	
+	
+	//INSTANCE USER BDD, COUCHE BDD SECURE
+	
 	private Pattern pattern;
 	private Matcher matcher;
 	/**
@@ -25,6 +29,26 @@ public class UserForm implements Validator, Serializable {
 	private String userSurname = "Enter a UserSurname";
 	private String password = "Enter a Password";
 	private String email = "Enter an Email";
+	
+	private User user;
+	
+	
+	public UserForm() {
+		
+		
+		// TODO Auto-generated constructor stub
+		
+		
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 	
 	public String getEmail() {
 		return email;

@@ -1,12 +1,20 @@
 package UserPackage;
 
+import java.io.Serializable;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "USERS", schema = "PUBLIC", catalog = "PUBLIC")
-public class User implements java.io.Serializable {
+//@Entity
+//@Table(name = "USERS", schema = "PUBLIC", catalog = "PUBLIC")
+//@ManagedBean
+//@RequestScoped
+public class User implements Serializable {
 
+	
+	
 	/**
 	 * 
 	 */
@@ -17,15 +25,10 @@ public class User implements java.io.Serializable {
 	private String password = null;
 	private String email = null;
 	
-	private UserControl userControl;
+	//private UserControl userControl;
 	
-	public User() {	
-		
-		this.setUserControl(new UserControl());
-		this.setUserName(this.userControl.getUserForm().getUserName());
-		this.setUserSurname(this.userControl.getUserForm().getUserSurname());
-		this.setPassword(this.userControl.getUserForm().getPassword());
-		this.setEmail(this.userControl.getUserForm().getEmail());
+	public User() {			
+		//this.setUserControl(new UserControl());
 		
 	}
 
@@ -61,13 +64,13 @@ public class User implements java.io.Serializable {
 		this.email = email;
 	}
 
-	public UserControl getUserControl() {
-		return userControl;
-	}
-
-	public void setUserControl(UserControl userControl) {
-		this.userControl = userControl;
-	}
+//	public UserControl getUserControl() {
+//		return userControl;
+//	}
+//
+//	public void setUserControl(UserControl userControl) {
+//		this.userControl = userControl;
+//	}
 
 	
 }

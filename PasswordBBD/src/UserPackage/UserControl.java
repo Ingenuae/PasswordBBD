@@ -8,16 +8,25 @@ import javax.persistence.PersistenceContext;
 @RequestScoped
 public class UserControl{
 	
-	private UserForm userForm;
+	private UserForm userForm; 
 	private User user;
 	
-	@PersistenceContext
-	private EntityManager em;
+	//@PersistenceContext
+	//private EntityManager em;
 	
 	public UserControl(){	
-		setUserForm(new UserForm());
-		this.user = new User(); //CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE
-		//em.persist(this.user); 
+		
+		//INSTANCE USER FORM, COUCHE NON SECURISE
+		this.setUserForm(new UserForm()); 
+		this.getUserForm().setUser(new User());
+		
+		 //CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE	
+		this.getUserForm().getUser().setUserName(getUserForm().getUserName());
+		this.getUserForm().getUser().setUserSurname(getUserForm().getUserSurname());
+		this.getUserForm().getUser().setPassword(getUserForm().getPassword());
+		this.getUserForm().getUser().setEmail(getUserForm().getEmail());
+		
+		//em.persist(this.userForm.user); 
 		//em.flush();
 	}
 
@@ -34,12 +43,5 @@ public class UserControl{
 		return action;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 }

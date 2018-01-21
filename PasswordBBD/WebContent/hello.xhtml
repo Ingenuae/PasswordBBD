@@ -12,9 +12,16 @@
       
  <body>
     <f:view>   	
+    <!-- 			binding="#{varPass}" -->
+<!-- 			<f:attribute name="attributeName" value="#{varPass}"></f:attribute> -->
+    
        <p>WELCOME #{userControl.userForm.userName} #{userControl.userForm.userSurname}</p>
        <p>Your Email is : #{userControl.userForm.email}</p>
-       <p>Your password :  #{userControl.userForm.password}</p>
+       <p>Your password :  #{userControl.userForm.password}</p>     
+       <p></p>
+          <p>WELCOME #{userControl.userForm.user.userName} #{userControl.userForm.user.userSurname}</p>
+       <p>Your Email is : #{userControl.userForm.user.email}</p>
+       <p>Your password :  #{userControl.userForm.user.password}</p>     
    </f:view> 
  </body>     
 </html>
