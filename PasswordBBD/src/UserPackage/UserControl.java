@@ -1,37 +1,26 @@
 package UserPackage;
+
+import java.util.List;
+
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @ManagedBean
 @RequestScoped
-public class UserControl{
-	
-	private UserForm userForm; 
+public class UserControl {
+
+	@EJB
+	private UserDao userDao;
+	private UserForm userForm;
 	private User user;
-	
-	//@PersistenceContext
-	//private EntityManager em;
-	
-	public UserControl(){	
-		
-		//INSTANCE USER FORM, COUCHE NON SECURISE
-		this.setUserForm(new UserForm()); 
-		System.out.println("hello");
-		
-		
-		 //CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE	
-		this.getUserForm().getUser().setUserName(getUserForm().getUserName());
-		this.getUserForm().getUser().setUserSurname(getUserForm().getUserSurname());
-		this.getUserForm().getUser().setPassword(getUserForm().getPassword());
-		this.getUserForm().getUser().setEmail(getUserForm().getEmail());
-		
-		this.getUserForm().setUser(new User());
-		System.out.println(this.getUserForm().getUser());
-		
-		//em.persist(this.userForm.user); 
-		//em.flush();
+
+	public UserControl() {
+		// INSTANCE USER FORM,
+		this.setUserForm(new UserForm());
 	}
 
 	public UserForm getUserForm() {
@@ -41,11 +30,44 @@ public class UserControl{
 	public void setUserForm(UserForm userForm) {
 		this.userForm = userForm;
 	}
-	
-	public Object action(){
-		Object action = "hello";
+
+	public String action() {
+
+		// create user
+		// CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE
+		this.setUser(new User());
+		this.getUser().setUserName(this.getUserForm().getUserName());
+		this.getUser().setUserSurname(this.getUserForm().getUserSurname());
+		this.getUser().setPassword(this.getUserForm().getPassword());
+		this.getUser().setEmail(this.getUserForm().getEmail());
+
+		// ADD USER TO BBD
+		this.userDao.add(this.getUser());
+
+		String action = "hello";
 		return action;
 	}
 
+	public String actionManage() {
+		String action = "list";
+		System.out.println("hi");
+		return action;
+	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	 public List<User> list() {
+	    	return userDao.list();
+	    }
+	 
+	 public String delete(long id) {
+	    	userDao.delete(id); //supprime
+	    	return "list";
+	    }
 }

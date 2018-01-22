@@ -19,9 +19,18 @@
        <p>Your Email is : #{userControl.userForm.email}</p>
        <p>Your password :  #{userControl.userForm.password}</p>     
        <p></p>
-          <p>WELCOME #{userControl.getUserForm().getUser().getUserName()} #{userControl.userForm.user.getUserSurname()}</p>
-       <p>Your Email is : #{userControl.userForm.user.email}</p>
-       <p>Your password :  #{userControl.userForm.user.password}</p>     
+       <p>WELCOME #{userControl.getUser().getUserName()} #{userControl.user.getUserSurname()}</p>
+       <p>Your Email is : #{userControl.user.email}</p>
+       <p>Your password :  #{userControl.user.password}</p>     
+       
+       <h3>CLICK HERE TO GO ON MANAGE USERS</h3>
+       
+       <h:form>
+        <h:commandButton value="GO TO MANAGE" action = "list"></h:commandButton>
+       </h:form>
+      
+       
+       
    </f:view> 
  </body>     
 </html>

@@ -30,25 +30,9 @@ public class UserForm implements Validator, Serializable {
 	private String password = "Enter a Password";
 	private String email = "Enter an Email";
 	
-	private User user;
-	
-	
-	public UserForm() {
-		
-		
-		// TODO Auto-generated constructor stub
-		
-		
+	public UserForm() {		
+		// TODO Auto-generated constructor stub		
 	}
-	
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
 	
 	public String getEmail() {
 		return email;

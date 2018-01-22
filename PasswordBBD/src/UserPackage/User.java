@@ -4,32 +4,51 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "USERS", schema = "PUBLIC", catalog = "PUBLIC")
-@ManagedBean
-@RequestScoped
+
+//@ManagedBean
+@Table(name = "USERS", schema = "PUBLIC", catalog = "PUBLIC")
+@Entity
 public class User implements Serializable {
 
-	
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column (name = "Id")
+	private Long id = null;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Column (name = "Name")
 	private String userName = null;
+	@Column (name = "Surname")
 	private String userSurname = null;
+	@Column (name = "Password")
 	private String password = null;
+	@Column (name = "Email")
 	private String email = null;
-	
-	//private UserControl userControl;
-	
-	public User() {			
-		//this.setUserControl(new UserControl());
-		
+
+	public User() {
+	}
+
+	public String toString() {
+		return id + userName + userSurname + password + email;
 	}
 
 	public String getUserName() {
@@ -64,13 +83,12 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-//	public UserControl getUserControl() {
-//		return userControl;
-//	}
-//
-//	public void setUserControl(UserControl userControl) {
-//		this.userControl = userControl;
-//	}
+	// public UserControl getUserControl() {
+	// return userControl;
+	// }
+	//
+	// public void setUserControl(UserControl userControl) {
+	// this.userControl = userControl;
+	// }
 
-	
 }
