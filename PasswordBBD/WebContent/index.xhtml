@@ -14,17 +14,30 @@
 		<h:inputText value="#{userControl.userForm.userName}" required="true" />
 		<p></p>
 		<h:outputLabel value="Surname : " />
-		<h:inputText value="#{userControl.userForm.userSurname}" required="true" />
+		<h:inputText value="#{userControl.userForm.userSurname}"
+			required="true" />
 		<p></p>
-		<h:outputLabel value="Email : " required="true"/>
-		<h:inputText id="email" value="#{userControl.userForm.email}" size="35"	maxlenght="125" validator="#{userControl.userForm.validate}" />
+		<h:outputLabel value="Email : " required="true" />
+		<h:inputText id="email" value="#{userControl.userForm.email}"
+			size="35" maxlenght="125"
+			validator="#{userControl.userForm.validate}" />
 		<h:message for="email" style="color:red" />
 		<p>Please Define your password :</p>
-		<h:inputText id="pass" value="#{userControl.userForm.password}" size="35"	maxlenght="125" validator="#{userControl.userForm.validatePassword}"/>
+		<h:inputText id="pass" value="#{userControl.userForm.password}"
+			size="35" maxlenght="125"
+			validator="#{userControl.userForm.validatePassword}" />
 		<h:message for="pass" style="color:red" />
-		<h:commandButton value="Validate" action = "#{userControl.action}"></h:commandButton>
-		
+		<h:commandButton value="Validate" action="#{userControl.action}"></h:commandButton>
+
+
+
 	</h:form>
+	
+			<h3>CLICK HERE TO GO ON MANAGE USERS</h3>
+
+		<h:form>
+			<h:commandButton value="GO TO MANAGE" action="list"></h:commandButton>
+		</h:form>
 </body>
 
 <!-- 			binding="#{varPass}" -->

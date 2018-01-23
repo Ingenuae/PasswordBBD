@@ -66,8 +66,24 @@ public class UserControl {
 	    	return userDao.list();
 	    }
 	 
+	 public List<User> listOneUser() {
+	    	return userDao.list();
+	    }
+	 
 	 public String delete(long id) {
-	    	userDao.delete(id); //supprime
+	    	userDao.delete(id);
 	    	return "list";
 	    }
+	 
+	 public String showEdit(long userId) {
+		this.user = userDao.get(userId);
+		 return "edit";
+	 }
+	 
+	 public String merge() {
+		 System.out.println(this.user.getEmail());
+		 System.out.println(this.user.getId());
+		userDao.update(this.user);
+		 return "edit";
+	 }
 }
