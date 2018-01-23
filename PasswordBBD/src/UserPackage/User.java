@@ -2,8 +2,6 @@ package UserPackage;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +23,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column (name = "Id")
-	private Long id = null;
+	private Long id;
 	
 	public Long getId() {
 		return id;
@@ -36,13 +34,13 @@ public class User implements Serializable {
 	}
 
 	@Column (name = "Name")
-	private String userName = null;
+	private String userName ;
 	@Column (name = "Surname")
-	private String userSurname = null;
+	private String userSurname ;
 	@Column (name = "Password")
-	private String password = null;
+	private String password ;
 	@Column (name = "Email")
-	private String email = null;
+	private String email ;
 
 	public User() {
 	}
