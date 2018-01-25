@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -21,13 +22,20 @@ public class UserControl implements Serializable {
 
 	@EJB
 	private UserDao userDao;
+	private TrackDao trackDao;
 	private UserForm userForm;
 	private User user;
+	// private Track track;
 
 	public UserControl() {
 		// INSTANCE USER FORM,
 		this.setUserForm(new UserForm());
 		this.setUser(new User());
+	}
+
+	@PostConstruct
+	public void init() {
+		// this.track = this.getTrack();
 	}
 
 	public UserForm getUserForm() {
@@ -50,6 +58,26 @@ public class UserControl implements Serializable {
 		this.userDao.add(this.getUser());
 
 		String action = "hello";
+		return action;
+	}
+
+	public String trackAction() {
+
+		// CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE
+
+		this.setUser(userDao.get(this.getUser().getId()));
+
+		this.getUser().setTrack(new Track());
+		this.getUser().getTrack().setTitle(this.getUser().getTrack().getTitle());
+		this.getUser().getTrack().setArtist(this.getUser().getTrack().getArtist());
+
+		// this.getUser().setTrack(track);
+		// ADD USER TO BBD
+		this.trackDao.addToUser(this.getUser().getTrack(), this.getUser().getId());
+
+		System.out.println("bonjour");
+
+		String action = "home";
 		return action;
 	}
 
@@ -86,20 +114,24 @@ public class UserControl implements Serializable {
 	}
 
 	public String update() {
-		 userDao.update(this.user);
+		userDao.update(this.user);
 		return "list";
 	}
-	
-	public void jaxMethod() throws IOException  {
-		
-		URL userRequest = new URL("http://localhost:8080/PasswordBBD/BBDApi/addUser?id=54&userName=Loulou&userSurname=Lili&email=a@gmail.com&password=654987");
-		URLConnection urlConnection = userRequest.openConnection();
-		urlConnection.setDoOutput(true);
-		urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-		urlConnection.connect();
-		//OutputStream outputStream = urlConnection.getOutputStream();
-		//outputStream.write(("{\"fNamn\": \"" + stringData + "\"}").getBytes("UTF-8"));
+
+	public void jaxMethod() throws IOException {
+
+		// URL userRequest = new
+		// URL("http://localhost:8080/PasswordBBD/BBDApi/addUser?id=54&userName=Loulou&userSurname=Lili&email=a@gmail.com&password=654987");
+		// URLConnection urlConnection = userRequest.openConnection();
+		// urlConnection.setDoOutput(true);
+		// urlConnection.setRequestProperty("Content-Type", "application/json;
+		// charset=utf-8");
+		// urlConnection.connect();
+		// OutputStream outputStream = urlConnection.getOutputStream();
+		// outputStream.write(("{\"fNamn\": \"" + stringData +
+		// "\"}").getBytes("UTF-8"));
+
 	}
-	
+
 	
 }

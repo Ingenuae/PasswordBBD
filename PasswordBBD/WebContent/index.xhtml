@@ -30,13 +30,16 @@
 		<h:commandButton value="Validate" action="#{userControl.action}"></h:commandButton>
 
 
-		<h:commandButton value="POST BY JAX METHOD" action="#{userControl.jaxMethod}"></h:commandButton>
+		<h:commandButton value="POST BY JAX METHOD" action="#{BBDApi.addUser}"></h:commandButton>
 	</h:form>
-	
 			<h3>CLICK HERE TO GO ON MANAGE USERS</h3>
 
 		<h:form>
 			<h:commandButton value="GO TO MANAGE" action="list"></h:commandButton>
+		</h:form>
+		
+			<h:form>
+			<h:commandButton value="GO TO NEW TRACK" action="trackIndex"></h:commandButton>
 		</h:form>
 </body>
 

@@ -2,11 +2,15 @@ package UserPackage;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -41,6 +45,19 @@ public class User implements Serializable {
 	private String password ;
 	@Column (name = "Email")
 	private String email ;
+
+	//@Column (name = "Track")
+	@OneToOne(cascade=CascadeType.ALL)
+	private Track track;
+	
+
+	public Track getTrack() {
+		return track;
+	}
+
+	public void setTrack(Track track) {
+		this.track = track;
+	}
 
 	public User() {
 	}
