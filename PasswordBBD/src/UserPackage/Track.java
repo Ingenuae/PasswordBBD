@@ -1,12 +1,14 @@
 package UserPackage;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -56,20 +58,18 @@ public class Track implements Serializable {
 
 	@Column (name = "Artist")
 	private String Artist ;
-	
-	
-	
-	//@Column (name = "User")
-	@OneToOne
-	private User user ;
-	
 		
-	public User getUser() {
-		return user;
+
+	//@Column (name = "User")
+	@ManyToMany
+	private List<Playlist> playlist;
+	
+	public List<Playlist> getPlaylist() {
+		return playlist;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPlaylist(List<Playlist> playlist) {
+		this.playlist = playlist;
 	}
 
 	public Track() {
@@ -79,14 +79,5 @@ public class Track implements Serializable {
 		return id + Title + " " + Artist;
 	}
 
-
-
-	// public UserControl getUserControl() {
-	// return userControl;
-	// }
-	//
-	// public void setUserControl(UserControl userControl) {
-	// this.userControl = userControl;
-	// }
 
 }

@@ -6,26 +6,26 @@
 
 <body>
 	<h1>JSF H2 EXAMPLE</h1>
-	<h2>LIST TRACKS OF EACH USERS</h2>
+	<h2>LIST PLAYLISTS OF EACH USERS</h2>
 
 	<h:form>
-		<h:dataTable value="#{userControl.listTrack()}" var="playlist.track">
+		<h:dataTable value="#{userControl.listPlaylist()}" var="playlist">
 			<h:column>
-				<strong>#{playlist.track.title}</strong>
+				<strong>#{playlist.playlistName}</strong>
 			</h:column>
-			<h:column>
-				<strong>#{playlist.track.artist}</strong>
-			</h:column>
+<!-- 			<h:column>
+				<strong>#{playlist.user}</strong>
+			</h:column> -->
 				<h:column>
-				<strong>#{playlist.track.id}</strong>
+				<strong>#{playlist.id}</strong>
 			</h:column>
 			<h:column>
 				<h:commandButton value="Delete"
-					action="#{userControl.delete(track.id)}"></h:commandButton>
+					action="#{userControl.playlistDelete(playlist.id)}"></h:commandButton>
 			</h:column>
 			<h:column>
 				<h:commandButton value="Edit"
-					action="#{userControl.showEditTrack(track.id)}"></h:commandButton>
+					action="#{userControl.showEditPlaylist(playlist.id)}"></h:commandButton>
 			</h:column>
 		</h:dataTable>
 	</h:form>
@@ -35,9 +35,9 @@
 		<h:commandButton value="New Account" action="index"></h:commandButton>
 	</h:form>
 
-	<h2>CREATE A NEW TRACK</h2>
+	<h2>CREATE A NEW PLAYLIST</h2>
 	<h:form>
-		<h:commandButton value="New TRACK" action="trackIndex"></h:commandButton>
+		<h:commandButton value="New Playlist" action="playlistIndex"></h:commandButton>
 	</h:form>
 
 </body>

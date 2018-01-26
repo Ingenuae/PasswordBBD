@@ -1,15 +1,9 @@
 package UserPackage;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Serializable;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,15 +18,19 @@ public class UserControl implements Serializable {
 	private UserDao userDao;
 	@EJB
 	private TrackDao trackDao;
+	@EJB
+	private PlaylistDao playlistDao;
 	private UserForm userForm;
 	private User user;	
+	private Playlist playlist;
 	private Track track;
 
 	public UserControl() {
 		// INSTANCE USER FORM,
 		this.setUserForm(new UserForm());
 		this.setUser(new User());
-		this.track = new Track();	}
+		this.playlist = new Playlist();
+		}
 
 	public UserForm getUserForm() {
 		return userForm;
@@ -61,6 +59,24 @@ public class UserControl implements Serializable {
 
 		// CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE
 
+		this.setPlaylist(playlistDao.get(this.getPlaylist().getId()));
+
+		//this.getUser().setTrack(getTrack());
+//		this.getTrack().setTitle(this.getUser().getTrack().getTitle());
+//		this.getTrack().setArtist(this.getUser().getTrack().getArtist());
+
+		// ADD USER TO BBD
+		this.trackDao.addToPlaylist(this.getTrack(), this.getPlaylist().getId());
+
+		String action = "trackList";
+		return action;
+	}
+	
+
+	public String playlistAction() {
+
+		// CREATE AN INSTANCE OF USER FOR BDD CUZ NO BEAN INSTANCE
+
 		this.setUser(userDao.get(this.getUser().getId()));
 
 		//this.getUser().setTrack(getTrack());
@@ -68,14 +84,19 @@ public class UserControl implements Serializable {
 //		this.getTrack().setArtist(this.getUser().getTrack().getArtist());
 
 		// this.getUser().setTrack(track);
-		System.out.println(this.getUser().getId());
-		System.out.println(this.getTrack().toString());
 		// ADD USER TO BBD
-		System.out.println(this.trackDao);
-		this.trackDao.addToUser(this.getTrack(), this.getUser().getId());
+		this.playlistDao.addToUser(this.getPlaylist(), this.getUser().getId());
 
-		String action = "trackList";
+		String action = "playlistList";
 		return action;
+	}
+
+	public Playlist getPlaylist() {
+		return playlist;
+	}
+
+	public void setPlaylist(Playlist playlist) {
+		this.playlist = playlist;
 	}
 
 	public String actionManage() {
@@ -103,10 +124,19 @@ public class UserControl implements Serializable {
 	public List<User> listOneUser() {
 		return userDao.list();
 	}
+	
+	public List<Playlist> listPlaylist() {
+		return playlistDao.list();
+	}
 
 	public String delete(long id) {
 		userDao.delete(id);
 		return "list";
+	}
+	
+	public String playlistDelete(long id) {
+		playlistDao.delete(id);
+		return "playlistList";
 	}
 
 	public String showEdit(long userId) {
@@ -118,6 +148,11 @@ public class UserControl implements Serializable {
 		this.track = trackDao.get(trackId);
 		return "trackEdit";
 	}
+	
+	public String showEditPlaylist(long playlistId) {
+		this.playlist = playlistDao.get(playlistId);
+		return "playlistEdit";
+	}
 
 	public String update() {
 		userDao.update(this.user);
@@ -125,10 +160,15 @@ public class UserControl implements Serializable {
 	}
 	
 	public String updateTrack() {
-		System.out.println(this.getTrack());
 		trackDao.update(this.getTrack());
 		return "trackList";
 	}
+	
+	public String updatePlaylist() {
+		playlistDao.update(this.getPlaylist());
+		return "playlistList";
+	}
+
 
 	public void jaxMethod() throws IOException {
 

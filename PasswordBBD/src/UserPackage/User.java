@@ -1,6 +1,7 @@
 package UserPackage;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -47,16 +49,15 @@ public class User implements Serializable {
 	private String email ;
 
 	//@Column (name = "Track")
-	@OneToOne(cascade=CascadeType.ALL)
-	private Track track;
+	@ManyToMany
+	private List<Playlist> playlistList;
 	
-
-	public Track getTrack() {
-		return track;
+	public List<Playlist> getPlaylistList() {
+		return playlistList;
 	}
 
-	public void setTrack(Track track) {
-		this.track = track;
+	public void setPlaylistList(List<Playlist> playlistList) {
+		this.playlistList = playlistList;
 	}
 
 	public User() {

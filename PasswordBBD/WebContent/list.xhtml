@@ -25,7 +25,11 @@
 			<h:column>
 				<strong>#{user.id}</strong>
 			</h:column>
-					
+<!-- 			<h:dataTable value="#{userControl.listPlaylist()}" var="playlistList">
+				<h:column>
+					<strong>#{user.playlistList.playlistName}</strong>
+				</h:column>
+			</h:dataTable> -->
 			<h:column>
 				<h:commandButton value="Delete" action="#{userControl.delete(user.id)}"></h:commandButton>
 			</h:column>

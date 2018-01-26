@@ -6,25 +6,31 @@
 
 <body>
 	<h1>JSF H2 EXAMPLE</h1>
-	<h2>RECORD TRACK SETTINGS</h2>
+	<h2>RECORD PLAYLISTS SETTINGS</h2>
 	<h3>Connection Login</h3>
 
 	<h:form>
-	<h:outputLabel value="PLAYLIST ID : " />
-		<h:inputText value="#{userControl.playlist.id}" required="true" />
+	<h:outputLabel value="USER ID : " />
+		<h:inputText value="#{userControl.user.id}" required="true" />
 		<p></p>
-		<h:outputLabel value="Track Title : " />
-		<h:inputText value="#{userControl.track.title}" required="true" />
+		<h:outputLabel value="Playlist Name : " />
+		<h:inputText value="#{userControl.playlist.playlistName}" required="true" />
 		<p></p>
-		<h:outputLabel value="Name : " />
-		<h:inputText value="#{userControl.track.artist}"
+<!-- 		<h:outputLabel value="Playlist ID : " />
+		<h:inputText value="#{userControl.playlist.id}"
 			required="true" />
-		<p></p>
+		<p></p> -->
 
-		<h:commandButton value="Validate" action="#{userControl.trackAction}"></h:commandButton>
+		<h:commandButton value="Validate" action="#{userControl.playlistAction}"></h:commandButton>
 
 	</h:form>
 			<h3>CLICK HERE TO GO ON MANAGE USERS</h3>
+
+		<h:form>
+			<h:commandButton value="GO TO MANAGE PLAYLIST" action="playlistList"></h:commandButton>
+		</h:form>
+		
+					<h3>CLICK HERE TO GO ON MANAGE USERS</h3>
 
 		<h:form>
 			<h:commandButton value="GO TO MANAGE USERS" action="list"></h:commandButton>

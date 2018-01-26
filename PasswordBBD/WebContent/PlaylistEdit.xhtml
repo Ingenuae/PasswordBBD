@@ -5,25 +5,23 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:body>
-	<h1>EDIT TRACK BASE</h1>
+	<h1>EDIT PLAYLIST BASE</h1>
 	<h2>Select the parameter to edit</h2>
 	<h3>Validate it</h3>
 
 	<h:form>
-		<h:inputText value="#{userControl.track.title}" />
-		<strong><h:inputText value="#{userControl.track.artist}" /></strong>
-		<h:inputHidden value="#{userControl.track.id}" />
+		<h:inputText value="#{userControl.playlist.playlistName}" />
+
+		<h:inputHidden value="#{userControl.playlist.id}" />
 		
-		<h:commandButton value="Validate" action="#{userControl.updateTrack}"></h:commandButton>
+		<h:commandButton value="Validate" action="#{userControl.updatePlaylist}"></h:commandButton>
 	</h:form>
 	
 	       <h3>CLICK HERE TO GO ON MANAGE USERS</h3>
        
        <h:form>
-        <h:commandButton value="GO TO MANAGE" action = "trackList"></h:commandButton>
+        <h:commandButton value="GO TO MANAGE" action = "playlistList"></h:commandButton>
        </h:form>
-       
-       
 
 </h:body>
 

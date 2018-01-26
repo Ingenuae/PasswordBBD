@@ -17,11 +17,14 @@ public class TrackDao {
        em.persist(track);
     }	
     
-    public void addToUser(Track track, long userId) {
-    	User userTemp = em.find(User.class, userId);
-    	userTemp.setTrack(track);
+    public void addToPlaylist(Track track, long playlistId) {
+    	//FIND USER
+    	Playlist playlistTemp = em.find(Playlist.class, playlistId);
+    	//ADD THIS TRACK TO PLAYLIST    	
+    	playlistTemp.getTracklist().add(track);
+    	//userTemp.setTrack(track);
     	em.persist(track);
-    	em.persist(userTemp);     
+    	em.persist(playlistTemp);     
   }	
     
     public List<Track> list() {
