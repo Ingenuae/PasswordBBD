@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:body>
+	<h1>EDIT USER BASE</h1>
+	<h2>Select the parameter to edit</h2>
+	<h3>Validate it</h3>
+
+
+
+	<h:form>
+		<h:inputText value="#{userControl.user.userName}" />
+		<strong><h:inputText value="#{userControl.user.userSurname}" /></strong>
+		<strong><h:inputText value="#{userControl.user.email}" /></strong>
+		<strong><h:inputText value="#{userControl.user.password}" /></strong>
+		
+		<h:inputHidden value="#{userControl.user.id}" />
+		
+		<h:commandButton value="Validate" action="#{userControl.update}"></h:commandButton>
+	</h:form>
+	
+	       <h3>CLICK HERE TO GO ON MANAGE USERS</h3>
+       
+       <h:form>
+        <h:commandButton value="GO TO MANAGE" action = "list"></h:commandButton>
+       </h:form>
+
+</h:body>
+
+</html>

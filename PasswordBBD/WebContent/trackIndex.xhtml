@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<h1>JSF H2 EXAMPLE</h1>
+	<h2>RECORD TRACK SETTINGS</h2>
+	<h3>Connection Login</h3>
+
+	<h:form>
+	<h:outputLabel value="USER ID : " />
+		<h:inputText value="#{userControl.user.id}" required="true" />
+		<p></p>
+		<h:outputLabel value="Track Title : " />
+		<h:inputText value="#{userControl.track.title}" required="true" />
+		<p></p>
+		<h:outputLabel value="Name : " />
+		<h:inputText value="#{userControl.track.artist}"
+			required="true" />
+		<p></p>
+
+		<h:commandButton value="Validate" action="#{userControl.trackAction}"></h:commandButton>
+
+	</h:form>
+			<h3>CLICK HERE TO GO ON MANAGE USERS</h3>
+
+		<h:form>
+			<h:commandButton value="GO TO MANAGE USERS" action="list"></h:commandButton>
+		</h:form>
+</body>
+
+<!-- 			binding="#{varPass}" -->
+<!-- 			<f:attribute name="attributeName" value="#{varPass}"></f:attribute> -->
+<!-- 			<f:validator validatorId="passwordValidator"></f:validator> -->
+
+</html>

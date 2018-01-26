@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<h1>JSF H2 EXAMPLE</h1>
+	<h2>LIST ALL USERS</h2>
+
+	<h:form>
+		<h:dataTable value="#{userControl.list()}" var="user">
+			<h:column>
+				<strong>#{user.userName}</strong>
+			</h:column>
+			<h:column>
+				<strong>#{user.userSurname}</strong>
+			</h:column>
+			<h:column>
+				<strong>#{user.email}</strong>
+			</h:column>
+			<h:column>
+				<strong>#{user.password}</strong>
+			</h:column>
+			<h:column>
+				<strong>#{user.id}</strong>
+			</h:column>
+					
+			<h:column>
+				<h:commandButton value="Delete" action="#{userControl.delete(user.id)}"></h:commandButton>
+			</h:column>
+				<h:column>
+				<h:commandButton value="Delete" action="#{BBDApi.delete(user.id)}"></h:commandButton>
+			</h:column>
+			<h:column>
+				<h:commandButton value="Edit" action="#{userControl.showEdit(user.id)}"></h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	
+		<h2>CREATE A NEW USER</h2>
+	<h:form>
+		<h:commandButton value="New Account" action="index"></h:commandButton>
+	</h:form>
+		
+</body>
+</html>
