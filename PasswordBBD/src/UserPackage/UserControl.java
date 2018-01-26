@@ -22,21 +22,17 @@ public class UserControl implements Serializable {
 
 	@EJB
 	private UserDao userDao;
+	@EJB
 	private TrackDao trackDao;
 	private UserForm userForm;
-	private User user;
-	// private Track track;
+	private User user;	
+	private Track track;
 
 	public UserControl() {
 		// INSTANCE USER FORM,
 		this.setUserForm(new UserForm());
 		this.setUser(new User());
-	}
-
-	@PostConstruct
-	public void init() {
-		// this.track = this.getTrack();
-	}
+		this.track = new Track();	}
 
 	public UserForm getUserForm() {
 		return userForm;
@@ -67,17 +63,18 @@ public class UserControl implements Serializable {
 
 		this.setUser(userDao.get(this.getUser().getId()));
 
-		this.getUser().setTrack(new Track());
-		this.getUser().getTrack().setTitle(this.getUser().getTrack().getTitle());
-		this.getUser().getTrack().setArtist(this.getUser().getTrack().getArtist());
+		//this.getUser().setTrack(getTrack());
+//		this.getTrack().setTitle(this.getUser().getTrack().getTitle());
+//		this.getTrack().setArtist(this.getUser().getTrack().getArtist());
 
 		// this.getUser().setTrack(track);
+		System.out.println(this.getUser().getId());
+		System.out.println(this.getTrack().toString());
 		// ADD USER TO BBD
-		this.trackDao.addToUser(this.getUser().getTrack(), this.getUser().getId());
+		System.out.println(this.trackDao);
+		this.trackDao.addToUser(this.getTrack(), this.getUser().getId());
 
-		System.out.println("bonjour");
-
-		String action = "home";
+		String action = "trackList";
 		return action;
 	}
 
@@ -98,6 +95,10 @@ public class UserControl implements Serializable {
 	public List<User> list() {
 		return userDao.list();
 	}
+	
+	public List<Track> listTrack() {
+		return trackDao.list();
+	}
 
 	public List<User> listOneUser() {
 		return userDao.list();
@@ -112,10 +113,21 @@ public class UserControl implements Serializable {
 		this.user = userDao.get(userId);
 		return "edit";
 	}
+	
+	public String showEditTrack(long trackId) {
+		this.track = trackDao.get(trackId);
+		return "trackEdit";
+	}
 
 	public String update() {
 		userDao.update(this.user);
 		return "list";
+	}
+	
+	public String updateTrack() {
+		System.out.println(this.getTrack());
+		trackDao.update(this.getTrack());
+		return "trackList";
 	}
 
 	public void jaxMethod() throws IOException {
@@ -131,6 +143,14 @@ public class UserControl implements Serializable {
 		// outputStream.write(("{\"fNamn\": \"" + stringData +
 		// "\"}").getBytes("UTF-8"));
 
+	}
+
+	public Track getTrack() {
+		return track;
+	}
+
+	public void setTrack(Track track) {
+		this.track = track;
 	}
 
 	
